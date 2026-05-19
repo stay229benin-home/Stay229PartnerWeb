@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Manuel de déploiement — Stay229 Partenaires</title>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px 24px 80px;
+        background: #fafbfc;
+        color: #1f2937;
+        line-height: 1.6;
+    }
+    h1 {
+        background: linear-gradient(90deg, #06b6d4, #0891b2);
+        color: white;
+        padding: 18px 24px;
+        border-radius: 12px;
+        margin-bottom: 8px;
+    }
+    h2 {
+        color: #0e7490;
+        border-bottom: 3px solid #06b6d4;
+        padding-bottom: 6px;
+        margin-top: 38px;
+    }
+    h3 {
+        color: #0c4a6e;
+        margin-top: 26px;
+    }
+    .step {
+        background: white;
+        border-left: 5px solid #06b6d4;
+        padding: 14px 18px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .warning {
+        background: #fef3c7;
+        border-left: 5px solid #f59e0b;
+        padding: 12px 16px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .danger {
+        background: #fee2e2;
+        border-left: 5px solid #dc2626;
+        padding: 12px 16px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .success {
+        background: #d1fae5;
+        border-left: 5px solid #059669;
+        padding: 12px 16px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    .info {
+        background: #dbeafe;
+        border-left: 5px solid #2563eb;
+        padding: 12px 16px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+    }
+    code, .code-inline {
+        background: #e5e7eb;
+        color: #0e7490;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.92em;
+    }
+    pre {
+        background: #1f2937;
+        color: #e5e7eb;
+        padding: 16px 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    pre .var {
+        color: #fbbf24;
+        font-weight: bold;
+    }
+    pre .comment {
+        color: #9ca3af;
+        font-style: italic;
+    }
+    pre .keyword {
+        color: #f472b6;
+    }
+    pre .string {
+        color: #86efac;
+    }
+    .placeholder {
+        background: #fef3c7;
+        color: #92400e;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-family: Consolas, monospace;
+        border: 1px dashed #92400e;
+    }
+    .path {
+        background: #ecfeff;
+        color: #155e75;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-family: Consolas, monospace;
+        font-size: 0.92em;
+        display: inline-block;
+        margin: 2px 0;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        background: white;
+    }
+    th {
+        background: #06b6d4;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    tr:nth-child(even) td {
+        background: #f9fafb;
+    }
+    .checklist {
+        list-style: none;
+        padding-left: 0;
+    }
+    .checklist li {
+        background: white;
+        padding: 10px 14px;
+        margin: 6px 0;
+        border-radius: 6px;
+        border: 1px solid #e5e7eb;
+    }
+    .checklist li::before {
+        content: "☐ ";
+        color: #06b6d4;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.85em;
+        font-weight: bold;
+    }
+    .badge-new { background: #dcfce7; color: #166534; }
+    .badge-fix { background: #fee2e2; color: #991b1b; }
+    .toc {
+        background: white;
+        padding: 18px 24px;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        margin: 20px 0 40px;
+    }
+    .toc a {
+        color: #0891b2;
+        text-decoration: none;
+    }
+    .toc a:hover { text-decoration: underline; }
+    .toc ol { padding-left: 24px; }
+    .toc li { margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>📘 Manuel de déploiement — Stay229 Partenaires</h1>
+<p style="color: #6b7280; margin-bottom: 30px;">
+    Version du 19 mai 2026 — Tout ce qu'il faut faire pour mettre en ligne le site partenaire avec le nouveau système de paliers (5 niveaux), les multi-codes promo et le menu de navigation.
+</p>
+
+<div class="toc">
+    <strong style="color: #0e7490;">Sommaire</strong>
+    <ol>
+        <li><a href="#partie-1">Comprendre ce qui a changé</a></li>
+        <li><a href="#partie-1bis">⚠️ Étape 0 — Désactiver "Confirm email" dans Supabase (BUG FK)</a></li>
+        <li><a href="#partie-2">Étape 1 — Mettre à jour la base de données Supabase</a></li>
+        <li><a href="#partie-3">Étape 2 — Corriger le fichier <code>.env.local</code> (bug "invalid key")</a></li>
+        <li><a href="#partie-4">Étape 3 — Tester le site en local</a></li>
+        <li><a href="#partie-5">Étape 4 — Déployer le site sur Vercel</a></li>
+        <li><a href="#partie-6">Étape 5 — Recompiler l'app Android</a></li>
+        <li><a href="#partie-7">Checklist finale</a></li>
+        <li><a href="#partie-8">En cas de problème</a></li>
+    </ol>
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-1">1. Comprendre ce qui a changé <span class="badge badge-new">NOUVEAU</span></h2>
+
+<p>Avant de toucher quoi que ce soit, voici un récapitulatif clair des règles. Imprime cette page si tu veux : tu pourras t'y référer.</p>
+
+<h3>Pour les partenaires (influenceurs) — Refonte du 19 mai 2026</h3>
+
+<p>On est passés d'une commission <strong>fixe</strong> à une commission <strong>variable plafonnée</strong>, et on a ajouté un système de 5 niveaux pour motiver les partenaires les plus actifs.</p>
+
+<table>
+    <thead>
+        <tr><th>Niveau</th><th>Filleuls actifs *</th><th>Taux</th><th>Plafond / résa</th><th>Durée payée **</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>1</strong></td><td>1 à 5</td><td>3 %</td><td>700 F</td><td>4 mois</td></tr>
+        <tr><td><strong>2</strong></td><td>6 à 14</td><td>3 %</td><td>700 F</td><td>6 mois</td></tr>
+        <tr><td><strong>3</strong></td><td>15 à 29</td><td>3 %</td><td>700 F</td><td>9 mois</td></tr>
+        <tr><td><strong>4</strong></td><td>30 à 49</td><td>3,5 %</td><td>850 F</td><td>12 mois</td></tr>
+        <tr style="background:#fef9c3;"><td><strong>Gold</strong></td><td>50 et +</td><td>4 %</td><td>1 000 F</td><td>à vie</td></tr>
+    </tbody>
+</table>
+
+<p style="font-size:0.92em;color:#475569;margin-top:8px;">
+* <strong>Filleul actif</strong> = filleul ayant fait au moins une réservation d'appartement <strong>confirmée</strong>. Un inscrit qui ne réserve jamais ne compte pas.<br>
+** La durée part de la <strong>1ʳᵉ réservation confirmée</strong> parmi tous les filleuls du partenaire. Si le partenaire monte de niveau pendant la fenêtre, la durée du nouveau niveau s'applique automatiquement (donc la fenêtre s'allonge).
+</p>
+
+<div class="info">
+    <strong>Comment ça se calcule concrètement :</strong> commission = <code>min(montant_résa × taux, plafond)</code>.<br>
+    Exemple niveau 1 : un filleul réserve à 15 000 F → commission = min(15000 × 3 %, 700) = <strong>450 F</strong>.<br>
+    Le même filleul réserve à 30 000 F → commission = min(30000 × 3 %, 700) = <strong>700 F</strong> (le plafond).
+</div>
+
+<h3>Conditions pour retirer son argent</h3>
+<ul>
+    <li>≥ <strong>3 filleuls</strong> liés au code du partenaire</li>
+    <li>≥ <strong>2 500 F CFA</strong> de commission cumulée</li>
+    <li>Paiements effectués manuellement chaque <strong>vendredi</strong> et <strong>samedi</strong> sur le numéro Mobile Money du partenaire</li>
+</ul>
+
+<div class="info">
+    <strong>Mini-lexique Stay229</strong> — Dans l'app, "<strong>court séjour</strong>" = vraie réservation d'appartement (paiement à la nuit ou aux 24H) ; "<strong>long séjour</strong>" = simple <strong>visite</strong> d'un logement à louer longue durée (2000 F forfaitaire). La commission partenaire ne tombe que sur les vraies réservations d'appart, pas sur les visites.
+</div>
+
+<h3>Codes promo personnalisés <span class="badge badge-new">NOUVEAU</span></h3>
+<div class="success">
+    Le partenaire peut désormais générer <strong>plusieurs codes promo</strong> (un par plateforme, par campagne, etc.) depuis la page <strong>Codes promo</strong> de son espace. Pour chaque code, il peut renseigner facultativement la <strong>plateforme</strong> (Instagram / TikTok / WhatsApp / YouTube / Snapchat / X / LinkedIn / Bouche à oreille / Autre) et l'<strong>URL de son profil</strong> sur cette plateforme. Le code peut être auto-généré (8 caractères) ou choisi par le partenaire (par ex. <code>JEAN229</code>).
+</div>
+
+<h3>Pour les clients (filleuls)</h3>
+<div class="success">
+    Les clients qui s'inscrivent <strong>avec un code promo</strong> bénéficient automatiquement de <strong>10 % de réduction</strong> sur leur <strong>toute première</strong> réservation d'appartement. C'est l'argument que les partenaires peuvent utiliser pour convaincre leur audience. La remise ne s'applique pas sur les frais de visite (2000 F) — par design, pour que les partenaires aient de quoi vendre du concret.
+</div>
+
+<h3>Le bug "invalid key" expliqué</h3>
+<div class="danger">
+    Le fichier <code>.env.local</code> contenait la valeur fictive <span class="placeholder">ta_clef_anon_ici</span> pour la clé Supabase. Quand le site se lance, il essaie de se connecter à Supabase avec cette clé bidon → erreur "Invalid API key". <strong>Corrigé dans ce déploiement.</strong>
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-1bis">⚠️ Étape 0 — Désactiver "Confirm email" dans Supabase <span class="badge badge-fix">BUG FK</span></h2>
+
+<div class="danger">
+    <strong>Symptôme :</strong> à l'étape "Créer mon compte partenaire", tu vois le message rouge :<br>
+    <code>insert or update on table "partners" violates foreign key constraint "partners_auth_user_id_fkey"</code>
+</div>
+
+<p><strong>Cause :</strong> Supabase a deux protections "anti-énumération" qui empêchent le mini-site de connaître le vrai ID utilisateur tant que l'email n'est pas confirmé. Quand la confirmation par email est activée, le user n'apparaît dans <code>auth.users</code> qu'après clic sur le lien email — mais le mini-site essaie d'insérer dans <code>partners</code> immédiatement. La clé étrangère trouve aucune ligne correspondante → erreur.</p>
+
+<p><strong>Solution :</strong> on désactive "Confirm email" pour l'espace partenaires. C'est une simple bascule dans Supabase.</p>
+
+<div class="step">
+    <strong>0.1</strong> — Va sur <a href="https://supabase.com/dashboard/project/irtsrjozknzpdugakrjc">le dashboard Supabase du projet</a>.
+</div>
+
+<div class="step">
+    <strong>0.2</strong> — Dans la barre latérale gauche, clique sur l'icône <strong>Authentication</strong> (cadenas, en bas de la liste).
+</div>
+
+<div class="step">
+    <strong>0.3</strong> — Dans le sous-menu Authentication, clique sur <strong>Providers</strong> (ou <strong>Sign In / Up</strong> selon ta version de l'UI Supabase).
+</div>
+
+<div class="step">
+    <strong>0.4</strong> — Clique sur la ligne <strong>Email</strong> (généralement la 1ère ligne).
+</div>
+
+<div class="step">
+    <strong>0.5</strong> — Tu vois plusieurs interrupteurs. <strong>Décoche</strong> celui intitulé <strong>"Confirm email"</strong> (parfois noté "Require email confirmation"). L'interrupteur passe en gris.
+</div>
+
+<div class="step">
+    <strong>0.6</strong> — En bas du panneau, clique sur le bouton <strong>Save</strong>.
+</div>
+
+<div class="success">
+    <strong>✓ C'est fait.</strong> Maintenant tout signup crée immédiatement le user dans <code>auth.users</code> et le mini-site peut créer la ligne <code>partners</code> sans erreur.
+</div>
+
+<h3>Si tu avais déjà essayé de t'inscrire avec un email…</h3>
+
+<p>L'email <em>peut</em> être déjà "fantôme" dans Supabase (créé mais non confirmé). Pour repartir propre avec le même email :</p>
+
+<div class="step">
+    <strong>0.7</strong> — Toujours dans Authentication, clique sur <strong>Users</strong> dans le sous-menu.
+</div>
+
+<div class="step">
+    <strong>0.8</strong> — Cherche l'email que tu as essayé (ex: <code>doslinatoungbe7@gmail.com</code>) dans la liste.
+</div>
+
+<div class="step">
+    <strong>0.9</strong> — Clique sur les <strong>3 points (...)</strong> à droite de la ligne → <strong>Delete user</strong>. Confirme.
+</div>
+
+<div class="info">
+    <strong>Astuce :</strong> tu peux aussi simplement utiliser un autre email pour ton premier test, et garder <code>doslinatoungbe7@gmail.com</code> pour un vrai compte plus tard.
+</div>
+
+<h2 id="partie-2">2. Étape 1 — Mettre à jour la base de données Supabase</h2>
+
+<p>Il faut exécuter une nouvelle migration SQL pour appliquer les nouvelles règles de commission.</p>
+
+<div class="step">
+    <strong>2.1 — Ouvre ton navigateur sur :</strong><br>
+    <a href="https://supabase.com/dashboard/project/irtsrjozknzpdugakrjc">https://supabase.com/dashboard/project/irtsrjozknzpdugakrjc</a>
+</div>
+
+<div class="step">
+    <strong>2.2 — Connecte-toi</strong> avec le compte qui possède le projet Stay229.
+</div>
+
+<div class="step">
+    <strong>2.3 — Dans la barre latérale gauche</strong>, repère l'icône <strong>SQL Editor</strong> (icône <code>&lt;/&gt;</code>, vers le milieu de la barre). Clique dessus.
+</div>
+
+<div class="step">
+    <strong>2.4 — Clique sur le bouton <code>+ New query</code></strong> en haut à droite de la zone SQL. Une zone de texte vide apparaît.
+</div>
+
+<div class="step">
+    <strong>2.5 — Ouvre le fichier suivant dans l'explorateur de fichiers Windows :</strong><br>
+    <span class="path">C:\Users\DOSLIN\Stay229\Stay229Android-Native\supabase\migrations\0017_referral_levels_and_multi_codes.sql</span><br>
+    Tu peux l'ouvrir avec le <strong>Bloc-notes</strong> (clic droit → Ouvrir avec → Bloc-notes).
+    <div class="warning" style="margin-top: 8px;">
+        ⚠️ <strong>À répéter pour les fichiers suivants si ce n'est pas déjà fait :</strong>
+        <ul style="margin: 6px 0 0 18px;">
+            <li><code>0015_referral_commission_update.sql</code> — refonte des commissions (ancien modèle 500 F fixe). À appliquer avant le 0017.</li>
+            <li><code>0016_profiles_rgpd_columns.sql</code> — colonnes RGPD pour l'app voyageur (sans ça l'inscription voyageur casse).</li>
+            <li><code>0017_referral_levels_and_multi_codes.sql</code> — système de paliers + multi-codes promo (NOUVEAU 2026-05-19).</li>
+        </ul>
+        Si tu pars d'une base déjà à jour jusqu'au 0016, applique uniquement le 0017.
+    </div>
+</div>
+
+<div class="step">
+    <strong>2.6 — Sélectionne TOUT le contenu du fichier</strong> (<code>Ctrl + A</code>), puis <strong>copie-le</strong> (<code>Ctrl + C</code>).
+</div>
+
+<div class="step">
+    <strong>2.7 — Retourne sur l'onglet Supabase</strong> du navigateur, et <strong>colle</strong> le contenu (<code>Ctrl + V</code>) dans la zone SQL vide.
+</div>
+
+<div class="step">
+    <strong>2.8 — Clique sur le bouton vert <code>Run</code></strong> en bas à droite (ou appuie sur <code>Ctrl + Entrée</code>).
+</div>
+
+<div class="success">
+    <strong>✓ Résultat attendu :</strong> En bas de la page, tu dois voir un message vert "<em>Success. No rows returned</em>" ou similaire. Si tu vois ça, la migration est appliquée.
+</div>
+
+<div class="danger">
+    <strong>Si tu vois "ERROR: relation does not exist" ou similaire :</strong> c'est que la migration <code>0014_referral_system.sql</code> n'a pas été exécutée avant. Refais d'abord les étapes 2.5 à 2.8 avec le fichier <span class="path">0014_referral_system.sql</span> situé dans le même dossier, puis recommence avec le <code>0015</code>.
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-3">3. Étape 2 — Corriger le fichier <code>.env.local</code> <span class="badge badge-fix">BUG FIXÉ</span></h2>
+
+<p><strong>Ce fichier a déjà été corrigé pour toi.</strong> Vérifions juste que tout est bon.</p>
+
+<div class="step">
+    <strong>3.1 — Ouvre le fichier suivant avec le Bloc-notes :</strong><br>
+    <span class="path">C:\Users\DOSLIN\Stay229\Stay229PartnerWeb\.env.local</span>
+</div>
+
+<div class="step">
+    <strong>3.2 — Vérifie que le contenu est exactement :</strong>
+    <pre><span class="comment"># Variables d'environnement Supabase pour le site partenaire Stay229</span>
+
+<span class="var">NEXT_PUBLIC_SUPABASE_URL</span>=https://irtsrjozknzpdugakrjc.supabase.co
+<span class="var">NEXT_PUBLIC_SUPABASE_ANON_KEY</span>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.<span class="string">[long texte]</span></pre>
+</div>
+
+<div class="warning">
+    <strong>Si tu changes un jour de projet Supabase :</strong> récupère ta nouvelle clé anon depuis Supabase → ⚙️ <em>Project Settings</em> → <em>API</em> → ligne "anon public" → bouton <strong>Copy</strong>, et remplace la valeur après le <code>=</code> de la ligne <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>. <strong>Pas d'espace, pas de guillemets, juste le texte.</strong>
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-4">4. Étape 3 — Tester le site en local</h2>
+
+<p>Avant de déployer en ligne, on teste que tout marche sur ton PC.</p>
+
+<div class="step">
+    <strong>4.1 — Vérifie que Node.js est installé :</strong>
+    Ouvre l'<strong>Invite de commandes Windows</strong> (touche Windows → tape <code>cmd</code> → Entrée). Tape :
+    <pre>node --version</pre>
+    Tu dois voir quelque chose comme <code>v20.11.0</code> (un nombre ≥ 18).
+</div>
+
+<div class="warning">
+    <strong>Si la commande n'est pas reconnue :</strong> télécharge Node.js depuis <a href="https://nodejs.org">https://nodejs.org</a> (version LTS), installe-le, puis ferme et rouvre l'Invite de commandes.
+</div>
+
+<div class="step">
+    <strong>4.2 — Va dans le dossier du site :</strong>
+    <pre>cd C:\Users\DOSLIN\Stay229\Stay229PartnerWeb</pre>
+</div>
+
+<div class="step">
+    <strong>4.3 — Installe les dépendances (à faire une seule fois) :</strong>
+    <pre>npm install</pre>
+    Ça prend 30 secondes à 2 minutes selon la connexion. Tu verras plein de lignes défiler — c'est normal.
+</div>
+
+<div class="step">
+    <strong>4.4 — Lance le site :</strong>
+    <pre>npm run dev</pre>
+    Au bout de quelques secondes, tu verras :
+    <pre>▲ Next.js 14.x.x
+- Local:  http://localhost:3000</pre>
+</div>
+
+<div class="step">
+    <strong>4.5 — Ouvre ton navigateur sur :</strong>
+    <a href="http://localhost:3000">http://localhost:3000</a>
+</div>
+
+<div class="step">
+    <strong>4.6 — Teste l'inscription :</strong>
+    <ul>
+        <li>Clique sur <strong>Devenir partenaire</strong></li>
+        <li>Remplis tous les champs (utilise un email <strong>réel</strong> qui t'appartient)</li>
+        <li>Clique sur <strong>Créer mon compte partenaire</strong></li>
+    </ul>
+</div>
+
+<div class="success">
+    <strong>✓ Si ça marche :</strong> tu es redirigé vers le dashboard avec ton code promo affiché en grand. Bravo.
+</div>
+
+<div class="danger">
+    <strong>Si tu vois encore "Invalid API key" :</strong> ferme le terminal (clic sur la fenêtre cmd → <code>Ctrl + C</code>), vérifie une dernière fois le fichier <span class="path">.env.local</span> (étape 3.2), puis relance avec <code>npm run dev</code>.
+</div>
+
+<div class="step">
+    <strong>4.7 — Arrête le serveur de test</strong> avec <code>Ctrl + C</code> dans la fenêtre <code>cmd</code>.
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-5">5. Étape 4 — Déployer le site sur Vercel (pour le rendre public)</h2>
+
+<p>Vercel = service gratuit qui héberge ton site sur Internet. Compte le créer si tu n'en as pas.</p>
+
+<h3>5.1 — Pousser le code sur GitHub</h3>
+
+<div class="info">
+    Si tu n'as pas encore mis le projet sur GitHub, fais d'abord ça. Si c'est déjà fait, saute à 5.2.
+</div>
+
+<div class="step">
+    <strong>5.1.a</strong> — Crée un compte sur <a href="https://github.com">https://github.com</a> si tu n'en as pas.
+</div>
+
+<div class="step">
+    <strong>5.1.b</strong> — Sur GitHub, clique <strong>+ → New repository</strong>. Donne-lui le nom <code>Stay229PartnerWeb</code>. Laisse <strong>Public</strong> ou <strong>Private</strong> (peu importe). Clique <strong>Create</strong>.
+</div>
+
+<div class="step">
+    <strong>5.1.c</strong> — Dans l'Invite de commandes :
+    <pre>cd C:\Users\DOSLIN\Stay229\Stay229PartnerWeb
+git init
+git add .
+git commit -m "Initial commit Stay229 Partner Web"
+git branch -M main
+git remote add origin https://github.com/<span class="placeholder">TON_USERNAME</span>/Stay229PartnerWeb.git
+git push -u origin main</pre>
+    Remplace <span class="placeholder">TON_USERNAME</span> par ton nom d'utilisateur GitHub.
+</div>
+
+<h3>5.2 — Déployer sur Vercel</h3>
+
+<div class="step">
+    <strong>5.2.a</strong> — Va sur <a href="https://vercel.com">https://vercel.com</a>, crée un compte (le plus simple : "Continue with GitHub").
+</div>
+
+<div class="step">
+    <strong>5.2.b</strong> — Une fois connecté, clique <strong>Add New… → Project</strong>.
+</div>
+
+<div class="step">
+    <strong>5.2.c</strong> — Tu vois la liste de tes repos GitHub. Clique <strong>Import</strong> à côté de <code>Stay229PartnerWeb</code>.
+</div>
+
+<div class="step">
+    <strong>5.2.d</strong> — Tu arrives sur l'écran "Configure Project" :
+    <ul>
+        <li><strong>Framework Preset</strong> : laisse "Next.js" (détecté automatiquement)</li>
+        <li><strong>Root Directory</strong> : laisse <code>./</code></li>
+        <li><strong>Environment Variables</strong> : c'est ici qu'on ajoute les clés. Clique <strong>Add</strong> :
+            <table>
+                <thead><tr><th>Name (= clé)</th><th>Value (= valeur)</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><code>NEXT_PUBLIC_SUPABASE_URL</code></td>
+                        <td><code>https://irtsrjozknzpdugakrjc.supabase.co</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td>
+                        <td>copie/colle la même longue chaîne que dans <code>.env.local</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+    </ul>
+</div>
+
+<div class="step">
+    <strong>5.2.e</strong> — Clique sur le bouton <strong>Deploy</strong>. Attends 1 à 3 minutes.
+</div>
+
+<div class="success">
+    <strong>✓ Quand c'est fini :</strong> Vercel affiche un confetti et te donne une URL du genre<br>
+    <code>https://stay229-partner-web.vercel.app</code><br>
+    C'est l'adresse à partager aux partenaires.
+</div>
+
+<h3>5.3 — (Optionnel) Brancher un domaine custom</h3>
+
+<div class="step">
+    Si tu as déjà un domaine (ex: <code>stay229.bj</code>), dans Vercel : ouvre le projet → onglet <strong>Settings</strong> → <strong>Domains</strong> → tape par exemple <code>partenaires.stay229.bj</code> → suis les instructions DNS qui s'affichent.
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-6">6. Étape 5 — Recompiler l'app Android</h2>
+
+<p>L'app Android a aussi été modifiée pour appliquer automatiquement la réduction de 10% aux clients parrainés. Il faut recompiler l'APK.</p>
+
+<div class="step">
+    <strong>6.1</strong> — Ouvre <strong>Android Studio</strong>.
+</div>
+
+<div class="step">
+    <strong>6.2</strong> — File → Open → sélectionne <span class="path">C:\Users\DOSLIN\Stay229\Stay229Android-Native</span>
+</div>
+
+<div class="step">
+    <strong>6.3</strong> — Attends que Gradle sync se termine (en bas à droite, la barre "Gradle Build"). Ça peut prendre 1 à 5 minutes la première fois.
+</div>
+
+<div class="step">
+    <strong>6.4</strong> — Une fois prêt, dans le menu : <strong>Build → Generate Signed Bundle / APK…</strong> → choisis <strong>APK</strong> → suis l'assistant avec ton keystore habituel.
+</div>
+
+<div class="step">
+    <strong>6.5</strong> — Installe le nouvel APK sur ton téléphone et fais le tour : inscris un nouveau compte test avec un code promo valide → quand tu réserves <strong>un appartement (court séjour)</strong>, tu dois voir une ligne "Réduction parrainage -10%" dans le récapitulatif. Pour une simple <strong>visite</strong> (long séjour 2000 F), la remise n'apparaît pas, c'est normal.
+</div>
+
+<div class="warning">
+    <strong>Si Android Studio refuse de build avec "Out of Memory" :</strong> ouvre le fichier <span class="path">C:\Users\DOSLIN\Stay229\Stay229Android-Native\gradle.properties</span> et change la ligne <code>-Xmx1536m</code> en <code>-Xmx1024m</code>.
+</div>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-7">7. Checklist finale ✓</h2>
+
+<ul class="checklist">
+    <li>Migrations SQL <code>0015</code>, <code>0016</code> et <code>0017</code> exécutées dans Supabase SQL Editor (dans cet ordre)</li>
+    <li>Fichier <code>.env.local</code> contient la vraie clé Supabase (pas le placeholder)</li>
+    <li>Test en local OK (<code>npm run dev</code> → création de compte fonctionne)</li>
+    <li>Sur le site déployé, la <strong>page d'accueil</strong> affiche le tableau des 5 niveaux et les boutons "Devenir partenaire" / "Se connecter"</li>
+    <li>Le <strong>menu en haut</strong> (Tableau de bord / Codes promo / Règles / Nous contacter) s'affiche une fois connecté</li>
+    <li>La page <strong>/promo-codes</strong> permet de créer un nouveau code, avec choix de plateforme et URL de profil facultatifs</li>
+    <li>La page <strong>/rules</strong> affiche les règles détaillées</li>
+    <li>Sur le dashboard, le bandeau "Niveau 1" s'affiche avec "3 % · max 700 F", et le bandeau retrait liste les 3 conditions</li>
+    <li>Code poussé sur GitHub</li>
+    <li>Site déployé sur Vercel avec les 2 variables d'environnement renseignées</li>
+    <li>App Android recompilée et installée (si tu en es là)</li>
+    <li>Test bout-en-bout : inscription client avec code promo + réservation d'appartement (court séjour) → -10% appliqué côté client, commission calculée selon le taux du niveau côté partenaire</li>
+</ul>
+
+<!-- ============================================================== -->
+
+<h2 id="partie-8">8. En cas de problème</h2>
+
+<h3>Erreur "Invalid API key" sur le site déployé</h3>
+<div class="danger">
+    Tu as oublié de remplir les variables d'environnement sur Vercel. Va dans Vercel → ton projet → <strong>Settings → Environment Variables</strong>, ajoute <code>NEXT_PUBLIC_SUPABASE_URL</code> et <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> avec les bonnes valeurs, puis dans l'onglet <strong>Deployments</strong> clique sur les 3 points <code>...</code> du dernier déploiement → <strong>Redeploy</strong>.
+</div>
+
+<h3>Erreur "relation public.partners does not exist"</h3>
+<div class="danger">
+    La migration <code>0014</code> n'a jamais été exécutée. Reviens en arrière et exécute-la (même procédure que 0017, dans le fichier <span class="path">0014_referral_system.sql</span>), puis enchaîne avec 0015 et 0017.
+</div>
+
+<h3>Erreur "cannot drop view partner_commissions because other objects depend on it"</h3>
+<div class="danger">
+    Tu utilises une ancienne version du fichier <code>0017_referral_levels_and_multi_codes.sql</code>. Récupère la dernière version (la section 6 du fichier doit commencer par <code>drop view if exists public.partner_commission_totals;</code> AVANT <code>drop view if exists public.partner_commissions;</code>) et relance.
+    <br><br>
+    <strong>Solution rapide</strong> : avant de coller le fichier, colle d'abord ces deux lignes dans le SQL Editor et clique Run :
+    <pre style="margin-top:6px;">drop view if exists public.partner_commission_totals;
+drop view if exists public.partner_commissions;</pre>
+    Puis colle le contenu du fichier 0017 et clique Run à nouveau.
+</div>
+
+<h3>Erreur "relation public.partner_promo_codes does not exist"</h3>
+<div class="danger">
+    La migration <code>0017</code> n'a pas été exécutée. Refais l'étape 2 avec le fichier <span class="path">0017_referral_levels_and_multi_codes.sql</span>.
+</div>
+
+<h3>Les commissions ne s'affichent pas dans le dashboard</h3>
+<div class="warning">
+    C'est normal au début : tant qu'un filleul n'a pas fait <strong>une réservation confirmée</strong> d'appartement (code <code>CS…</code>), aucune commission n'apparaît. Les <strong>visites</strong> (code <code>LS…</code>) ne génèrent jamais de commission.
+</div>
+
+<h3>Le bandeau "Niveau" affiche "Niveau 1" alors que mon partenaire a 30 filleuls</h3>
+<div class="warning">
+    Le niveau est basé sur les <strong>filleuls actifs</strong> uniquement (au moins 1 résa confirmée d'appartement). Vérifie le champ <code>confirmed_filleul_count</code> dans la vue <code>partner_commission_totals</code>. Si la valeur est basse, c'est que la plupart des filleuls inscrits n'ont jamais réservé.
+</div>
+
+<h3>Le bouton "Codes promo" n'apparaît pas dans le menu</h3>
+<div class="warning">
+    Le menu ne s'affiche que sur les pages connectées (Dashboard, Codes promo, Règles). Sur la page d'accueil <code>/</code>, <code>/login</code> et <code>/signup</code>, il est volontairement caché. Connecte-toi pour le voir apparaître.
+</div>
+
+<h3>Besoin d'aide avec Claude</h3>
+<div class="info">
+    Dans une nouvelle conversation Claude, demande-lui de lire :<br>
+    <span class="path">C:\Users\DOSLIN\Stay229\Stay229PartnerWeb\HANDOFF.md</span><br>
+    Il aura tout le contexte technique pour te dépanner.
+</div>
+
+<hr style="margin-top: 60px; border: none; border-top: 1px solid #e5e7eb;">
+<p style="color: #9ca3af; text-align: center; font-size: 0.85em; margin-top: 20px;">
+    Manuel de déploiement Stay229 — mis à jour le 19 mai 2026 (paliers + multi-codes)
+</p>
+
+</body>
+</html>

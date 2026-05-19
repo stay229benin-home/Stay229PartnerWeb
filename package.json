@@ -1,0 +1,30 @@
+{
+  "name": "stay229-partner-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mini-site Stay229 pour les partenaires (influenceurs, ambassadeurs). Permet de s'inscrire, voir son code promo et suivre les commissions générées par les filleuls.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.13",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@supabase/supabase-js": "2.45.4",
+    "@supabase/ssr": "0.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.16.5",
+    "@types/react": "18.3.5",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.47",
+    "tailwindcss": "3.4.13",
+    "typescript": "5.6.2",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.13"
+  }
+}
