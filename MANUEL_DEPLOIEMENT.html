@@ -483,7 +483,13 @@
 </div>
 
 <div class="step">
-    <strong>5.1.c</strong> — Dans l'Invite de commandes :
+    <strong>5.1.c</strong> — <strong>Première utilisation de git ?</strong> Configure d'abord ton identité (à faire UNE SEULE FOIS sur cet ordi). Mets l'email associé à ton compte GitHub :
+    <pre>git config --global user.email "<span class="placeholder">ton-email@github.com</span>"
+git config --global user.name "<span class="placeholder">Ton Nom</span>"</pre>
+</div>
+
+<div class="step">
+    <strong>5.1.d</strong> — Toujours dans l'Invite de commandes :
     <pre>cd C:\Users\DOSLIN\Stay229\Stay229PartnerWeb
 git init
 git add .
@@ -492,6 +498,25 @@ git branch -M main
 git remote add origin https://github.com/<span class="placeholder">TON_USERNAME</span>/Stay229PartnerWeb.git
 git push -u origin main</pre>
     Remplace <span class="placeholder">TON_USERNAME</span> par ton nom d'utilisateur GitHub.
+</div>
+
+<div class="warning">
+    <strong>Si tu vois "Author identity unknown"</strong> au moment du <code>git commit</code> : tu as sauté l'étape 5.1.c. Lance les deux commandes <code>git config --global ...</code> puis refais <code>git commit -m "..."</code> et <code>git push -u origin main</code>. Pas besoin de refaire <code>git add .</code> : les fichiers sont déjà prêts.
+</div>
+
+<div class="warning">
+    <strong>Si <code>git push</code> te demande un mot de passe</strong> : depuis 2021, GitHub n'accepte plus le mot de passe du compte pour le push HTTPS. À la place, génère un <strong>Personal Access Token</strong> :
+    <ol>
+        <li>Va sur github.com → ton profil → <strong>Settings</strong> → <strong>Developer settings</strong> (tout en bas à gauche)</li>
+        <li><strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong> → <strong>Generate new token (classic)</strong></li>
+        <li>Coche la case <code>repo</code> (tout en haut)</li>
+        <li>Clique <strong>Generate token</strong> et <strong>copie le token immédiatement</strong> (il ne s'affiche qu'une fois)</li>
+        <li>Quand <code>git push</code> te demande le mot de passe, colle le token à la place</li>
+    </ol>
+</div>
+
+<div class="warning">
+    <strong>Si tu vois "src refspec main does not match any"</strong> : c'est que tu n'as pas réussi à faire le <code>git commit</code> (souvent à cause de l'erreur Author identity unknown). Refais 5.1.c puis <code>git commit</code> puis <code>git push -u origin main</code>.
 </div>
 
 <h3>5.2 — Déployer sur Vercel</h3>
