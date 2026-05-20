@@ -519,7 +519,15 @@ git push -u origin main</pre>
     <strong>Si tu vois "src refspec main does not match any"</strong> : c'est que tu n'as pas réussi à faire le <code>git commit</code> (souvent à cause de l'erreur Author identity unknown). Refais 5.1.c puis <code>git commit</code> puis <code>git push -u origin main</code>.
 </div>
 
-<h3>5.2 — Déployer sur Vercel</h3>
+<h3>5.2 — Déployer le site (deux options gratuites)</h3>
+
+<div class="info">
+    <strong>Vercel</strong> (créateurs de Next.js) ou <strong>Netlify</strong> sont les deux options. Tous deux ont un plan gratuit suffisant pour Stay229 Partenaires. Choisis-en UN seul.
+    <br><br>
+    <strong>Recommandation</strong> : si Vercel te force à créer une "team" payante (Pro Trial / Pro), bascule sur Netlify — c'est plus simple et la procédure est en 5.2.bis ci-dessous.
+</div>
+
+<h4>5.2 (option A) — Déployer sur Vercel</h4>
 
 <div class="step">
     <strong>5.2.a</strong> — Va sur <a href="https://vercel.com">https://vercel.com</a>, crée un compte (le plus simple : "Continue with GitHub").
@@ -566,10 +574,70 @@ git push -u origin main</pre>
     C'est l'adresse à partager aux partenaires.
 </div>
 
+<div class="danger">
+    <strong>Si Vercel te force à créer une "Team" et te propose seulement Pro Trial ou Pro :</strong> ton compte Vercel n'a pas d'espace personnel gratuit. Bascule sur Netlify (option B ci-dessous), c'est gratuit sans demande de CB.
+</div>
+
+<h4>5.2 (option B) — Déployer sur Netlify (recommandé si Vercel insiste pour faire payer)</h4>
+
+<div class="step">
+    <strong>5.2.bis.a</strong> — Va sur <a href="https://netlify.com">https://netlify.com</a> → clique <strong>"Sign up"</strong> → choisis <strong>"Sign up with GitHub"</strong>. Autorise Netlify à voir tes repos.
+</div>
+
+<div class="step">
+    <strong>5.2.bis.b</strong> — Sur le dashboard Netlify, clique <strong>"Add new site"</strong> → <strong>"Import an existing project"</strong> → <strong>"Deploy with GitHub"</strong>.
+</div>
+
+<div class="step">
+    <strong>5.2.bis.c</strong> — Si Netlify te demande, autorise l'accès au repo <code>Stay229PartnerWeb</code>. Sélectionne-le dans la liste.
+</div>
+
+<div class="step">
+    <strong>5.2.bis.d</strong> — Sur la page de configuration :
+    <ul>
+        <li><strong>Site name</strong> : laisse auto, ou tape <code>stay229-partners</code></li>
+        <li><strong>Branch to deploy</strong> : <code>main</code></li>
+        <li><strong>Build command</strong> : <code>npm run build</code> (déjà rempli)</li>
+        <li><strong>Publish directory</strong> : <code>.next</code> (déjà rempli)</li>
+        <li>Laisse tout le reste tel quel — Netlify gère Next.js automatiquement avec son plugin officiel.</li>
+    </ul>
+</div>
+
+<div class="step">
+    <strong>5.2.bis.e</strong> — Avant de cliquer Deploy, ajoute les deux variables d'environnement. Cherche la section <strong>"Environment variables"</strong> (parfois cachée derrière "Add environment variables" ou "Show advanced") :
+    <table>
+        <thead><tr><th>Key</th><th>Value</th></tr></thead>
+        <tbody>
+            <tr>
+                <td><code>NEXT_PUBLIC_SUPABASE_URL</code></td>
+                <td><code>https://irtsrjozknzpdugakrjc.supabase.co</code></td>
+            </tr>
+            <tr>
+                <td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td>
+                <td>copie/colle la même longue chaîne que dans <code>.env.local</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="step">
+    <strong>5.2.bis.f</strong> — Clique <strong>"Deploy stay229-partners"</strong> (ou "Deploy site"). Attends 2 à 4 minutes.
+</div>
+
+<div class="success">
+    <strong>✓ Quand c'est fini :</strong> statut <strong>"Published"</strong> en vert + URL du genre<br>
+    <code>https://stay229-partners.netlify.app</code><br>
+    C'est l'adresse à partager aux partenaires. À chaque <code>git push</code> sur la branche main, Netlify redéploiera automatiquement.
+</div>
+
 <h3>5.3 — (Optionnel) Brancher un domaine custom</h3>
 
 <div class="step">
-    Si tu as déjà un domaine (ex: <code>stay229.bj</code>), dans Vercel : ouvre le projet → onglet <strong>Settings</strong> → <strong>Domains</strong> → tape par exemple <code>partenaires.stay229.bj</code> → suis les instructions DNS qui s'affichent.
+    Si tu as déjà un domaine (ex: <code>stay229.bj</code>) :
+    <ul>
+        <li><strong>Sur Vercel</strong> : ouvre le projet → onglet <strong>Settings</strong> → <strong>Domains</strong> → tape par exemple <code>partenaires.stay229.bj</code> → suis les instructions DNS qui s'affichent.</li>
+        <li><strong>Sur Netlify</strong> : ouvre le projet → <strong>Domain management</strong> → <strong>Add custom domain</strong> → tape ton domaine → suis les instructions DNS qui s'affichent.</li>
+    </ul>
 </div>
 
 <!-- ============================================================== -->

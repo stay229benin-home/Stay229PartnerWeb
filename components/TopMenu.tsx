@@ -17,7 +17,13 @@ import { createSupabaseClient } from "@/lib/supabase";
  * landing page (`/`), `/login` et `/signup` ne montrent donc PAS le menu.
  */
 
-const NAV_ITEMS = [
+type NavItem = {
+    href: string;
+    label: string;
+    external?: boolean;
+};
+
+const NAV_ITEMS: readonly NavItem[] = [
     { href: "/dashboard", label: "Tableau de bord" },
     { href: "/promo-codes", label: "Codes promo" },
     { href: "/rules", label: "Règles du programme" },
@@ -26,7 +32,7 @@ const NAV_ITEMS = [
         label: "Nous contacter",
         external: true,
     },
-] as const;
+];
 
 export default function TopMenu() {
     const pathname = usePathname() ?? "";
