@@ -38,9 +38,15 @@ export default function LandingPage() {
                     commission.
                 </p>
                 <p className="leading-relaxed">
-                    De leur côté, vos filleuls profitent de 10 % de réduction
-                    sur leur première réservation. C'est ce qui les pousse à
-                    utiliser votre code plutôt qu'à réserver à l'aveugle.
+                    De leur côté, vos filleuls économisent{" "}
+                    <span className="text-brand-cyanLight font-semibold">
+                        jusqu'à 10 %
+                    </span>{" "}
+                    sur leurs réservations grâce à du cashback crédité
+                    automatiquement sur leur portefeuille Stay229. Ce solde
+                    est ensuite utilisable comme réduction sur leurs futures
+                    réservations. C'est ce qui les pousse à utiliser votre
+                    code plutôt qu'à réserver à l'aveugle.
                 </p>
             </section>
 
@@ -82,7 +88,7 @@ export default function LandingPage() {
                     </p>
                     <p className="text-xs text-gray-400 pt-1">
                         À titre indicatif, ces 700 F représentent environ 30 %
-                        de la marge que Stay229 fait sur la résa.
+                        de la marge que Stay229 fait sur la réservation.
                     </p>
                 </div>
             </section>
@@ -160,12 +166,13 @@ export default function LandingPage() {
                     parmi vos filleuls. Si vous montez de niveau pendant cette
                     fenêtre, la durée s'allonge automatiquement. Exemple :
                     niveau 1 = 4 mois ; si vous passez niveau 2 au mois 3, vous
-                    avez en réalité 6 mois au total depuis votre première résa.
+                    avez en réalité 6 mois au total depuis votre première
+                    réservation.
                 </p>
                 <p className="leading-relaxed text-sm text-gray-300">
                     Le niveau Gold ne se ferme jamais. Une fois 50 filleuls
-                    actifs atteints, vous êtes payé à vie sur les résas de vos
-                    filleuls (4 %, plafonné à 1 000 F).
+                    actifs atteints, vous êtes payé à vie sur les
+                    réservations de vos filleuls (4 %, plafonné à 1 000 F).
                 </p>
             </section>
 

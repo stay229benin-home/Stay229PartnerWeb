@@ -26,6 +26,7 @@ type NavItem = {
 const NAV_ITEMS: readonly NavItem[] = [
     { href: "/dashboard", label: "Tableau de bord" },
     { href: "/promo-codes", label: "Codes promo" },
+    { href: "/profile", label: "Mon profil" },
     { href: "/rules", label: "Règles du programme" },
     {
         href: "mailto:supportstay229@gmail.com",

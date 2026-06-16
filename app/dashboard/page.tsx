@@ -226,12 +226,13 @@ export default function DashboardPage() {
                     {totals.promo_code}
                 </p>
                 <p className="text-xs text-gray-400">
-                    Partagez ce code. Chaque inscription qui le mentionne vous
-                    attribue le filleul, et lui offre{" "}
+                    Partagez ce code. Chaque inscription qui le mentionne
+                    vous attribue le filleul, et lui fait économiser{" "}
                     <span className="text-brand-cyanLight">
-                        10 % de réduction
+                        jusqu'à 10 %
                     </span>{" "}
-                    sur sa première réservation d'appartement.
+                    sur ses réservations d'appartement en cashback crédité
+                    sur son portefeuille Stay229.
                 </p>
                 <p className="text-xs text-gray-400 mt-3">
                     <Link
@@ -254,7 +255,7 @@ export default function DashboardPage() {
                     value={totals.confirmed_filleul_count.toLocaleString(
                         "fr-FR",
                     )}
-                    helper="Au moins 1 résa confirmée"
+                    helper="Au moins 1 réservation confirmée"
                 />
                 <StatCard
                     label="Commission cumulée"
@@ -264,7 +265,7 @@ export default function DashboardPage() {
                         .replace(
                             /\.0$/,
                             "",
-                        )} %, max ${formatXof(totals.commission_cap)} / résa`}
+                        )} %, max ${formatXof(totals.commission_cap)} / réservation`}
                 />
             </section>
 
@@ -345,7 +346,7 @@ export default function DashboardPage() {
 
 function renderWindow(t: Totals): string {
     if (!t.first_commission_booking_at) {
-        return "démarre à la 1ʳᵉ résa";
+        return "démarre à la 1ʳᵉ réservation";
     }
     if (t.commission_ends_at === null) {
         return "à vie (niveau Gold)";
@@ -412,7 +413,7 @@ function CommissionsTable({
                                 <th className="text-left px-3 py-2">Date</th>
                                 <th className="text-left px-3 py-2">Code</th>
                                 <th className="text-right px-3 py-2">
-                                    Montant résa
+                                    Montant réservation
                                 </th>
                                 <th className="text-right px-3 py-2">
                                     Commission

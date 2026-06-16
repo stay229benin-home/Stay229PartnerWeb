@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createSupabaseClient, generatePromoCode } from "@/lib/supabase";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -19,6 +20,7 @@ export default function SignupPage() {
     });
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
     function update<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
         setForm((f) => ({ ...f, [key]: value }));
@@ -55,6 +57,7 @@ export default function SignupPage() {
             const { data: signUp, error: signErr } = await supabase.auth.signUp({
                 email: form.email.trim(),
                 password: form.password,
+                options: { captchaToken: captchaToken ?? undefined },
             });
             if (signErr) throw new Error(signErr.message);
 
@@ -245,9 +248,11 @@ export default function SignupPage() {
                         <p className="text-sm text-red-400">{error}</p>
                     )}
 
+                    <TurnstileWidget onVerify={(token) => setCaptchaToken(token)} />
+
                     <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !captchaToken}
                         className="w-full rounded-xl bg-brand-cyan text-black font-semibold py-3 hover:opacity-90 disabled:opacity-50 transition mt-3"
                     >
                         {loading ? "Création du compte…" : "Créer mon compte partenaire"}

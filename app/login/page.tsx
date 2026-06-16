@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createSupabaseClient } from "@/lib/supabase";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 /**
  * Page de connexion partenaire. Email + mot de passe via Supabase Auth
@@ -18,6 +19,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -28,6 +30,7 @@ export default function LoginPage() {
             const { error: err } = await supabase.auth.signInWithPassword({
                 email: email.trim(),
                 password,
+                options: { captchaToken: captchaToken ?? undefined },
             });
             if (err) {
                 setError(err.message || "Connexion impossible.");
@@ -83,9 +86,11 @@ export default function LoginPage() {
                         <p className="text-sm text-red-400">{error}</p>
                     )}
 
+                    <TurnstileWidget onVerify={(token) => setCaptchaToken(token)} />
+
                     <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !captchaToken}
                         className="w-full rounded-xl bg-brand-cyan text-black font-semibold py-3 hover:opacity-90 disabled:opacity-50 transition"
                     >
                         {loading ? "Connexion…" : "Se connecter"}
@@ -93,6 +98,11 @@ export default function LoginPage() {
                 </form>
 
                 <div className="text-center text-sm text-gray-400 space-y-2">
+                    <p>
+                        <Link href="/forgot-password" className="text-brand-cyan hover:underline">
+                            Mot de passe oublié ?
+                        </Link>
+                    </p>
                     <p>
                         Pas encore partenaire ?{" "}
                         <Link href="/signup" className="text-brand-cyan hover:underline">

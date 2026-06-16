@@ -5,9 +5,9 @@ Mini-site Next.js pour les partenaires Stay229 (influenceurs, ambassadeurs). Per
 1. Créer un compte (email + mdp, infos personnelles, numéro MoMo de paiement).
 2. Recevoir un **code promo unique** qu'il partage avec son audience.
 3. Suivre dans un dashboard les commissions générées par ses filleuls :
-   - **Réservation d'appartement (court séjour)** : **500 F XOF** par réservation confirmée — à vie.
+   - **Réservation d'appartement (court séjour)** : commission variable plafonnée selon le niveau du partenaire (3 % à 4 %, plafond 700 F à 1 000 F par réservation). Voir `/rules` pour le détail des 5 niveaux.
    - **Visite longue durée** : aucune commission.
-   - **Avantage filleul** : 10 % de réduction sur sa **première** réservation d'appartement s'il s'inscrit avec un code promo.
+   - **Avantage filleul** : économie de **jusqu'à 10 %** sur ses réservations sous forme de **cashback** crédité sur son portefeuille Stay229, utilisable comme réduction sur ses futures réservations.
 
 Connecté au même projet Supabase que les apps Android Stay229.
 
@@ -59,7 +59,11 @@ Stay229PartnerWeb/
 │   ├── page.tsx            → landing (login / signup)
 │   ├── login/page.tsx      → connexion email+mdp
 │   ├── signup/page.tsx     → création compte partenaire + génération promo_code
+│   ├── complete/page.tsx   → complétion profil pour un compte Stay229 existant
 │   ├── dashboard/page.tsx  → tableau de bord : code promo, totaux, détail commissions
+│   ├── promo-codes/page.tsx → gestion multi-codes promo
+│   ├── profile/page.tsx    → profil partenaire (nom, prénom, email, contacts)
+│   ├── rules/page.tsx      → règles détaillées du programme
 │   └── globals.css
 ├── lib/
 │   └── supabase.ts         → client + helper generatePromoCode()

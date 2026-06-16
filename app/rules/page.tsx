@@ -62,28 +62,32 @@ export default function RulesPage() {
                 </p>
                 <div className="rounded-xl border border-gray-800 bg-brand-badge/40 p-4 text-sm space-y-1">
                     <p>
-                        Résa à <span className="font-mono">10 000 F</span> →
+                        Réservation à{" "}
+                        <span className="font-mono">10 000 F</span> →
                         commission ={" "}
                         <span className="font-mono text-brand-cyanLight">
                             300 F
                         </span>
                     </p>
                     <p>
-                        Résa à <span className="font-mono">15 000 F</span> →
+                        Réservation à{" "}
+                        <span className="font-mono">15 000 F</span> →
                         commission ={" "}
                         <span className="font-mono text-brand-cyanLight">
                             450 F
                         </span>
                     </p>
                     <p>
-                        Résa à <span className="font-mono">23 000 F</span> →
+                        Réservation à{" "}
+                        <span className="font-mono">23 000 F</span> →
                         commission ={" "}
                         <span className="font-mono text-brand-cyanLight">
                             690 F
                         </span>
                     </p>
                     <p>
-                        Résa à <span className="font-mono">25 000 F</span> →
+                        Réservation à{" "}
+                        <span className="font-mono">25 000 F</span> →
                         commission ={" "}
                         <span className="font-mono text-brand-cyanLight">
                             700 F
@@ -91,7 +95,8 @@ export default function RulesPage() {
                         (plafond)
                     </p>
                     <p>
-                        Résa à <span className="font-mono">100 000 F</span> →
+                        Réservation à{" "}
+                        <span className="font-mono">100 000 F</span> →
                         commission ={" "}
                         <span className="font-mono text-brand-cyanLight">
                             700 F
@@ -151,8 +156,9 @@ export default function RulesPage() {
                 <p>
                     Exemple : vous êtes niveau 1 (4 mois). Au mois 3, vous
                     passez à 8 filleuls actifs (niveau 2). Votre fenêtre
-                    passe alors à 6 mois au total depuis votre première résa
-                    — vous gagnez donc 3 mois supplémentaires de paiement.
+                    passe alors à 6 mois au total depuis votre première
+                    réservation — vous gagnez donc 3 mois supplémentaires
+                    de paiement.
                 </p>
                 <p>
                     Une fois Gold (50 filleuls actifs), vous restez payé à
@@ -188,16 +194,22 @@ export default function RulesPage() {
                 </p>
             </Section>
 
-            <Section title="5. Réduction pour les filleuls">
+            <Section title="5. Cashback fidélité pour les filleuls">
                 <p>
-                    Chaque filleul lié à votre code bénéficie de{" "}
+                    Chaque filleul lié à votre code économise{" "}
                     <span className="text-brand-cyanLight font-semibold">
-                        10 % de réduction
+                        jusqu'à 10 %
                     </span>{" "}
-                    sur sa première réservation d'appartement. Cette
-                    réduction est appliquée automatiquement au moment du
-                    paiement dans l'app Stay229. Elle ne s'applique pas aux
-                    visites longue durée.
+                    sur ses réservations d'appartement, sous forme de{" "}
+                    <span className="font-semibold">cashback</span> crédité
+                    automatiquement sur son portefeuille Stay229 (interne à
+                    l'application).
+                </p>
+                <p>
+                    Ce solde de portefeuille est ensuite utilisable comme
+                    réduction sur ses futures réservations dans
+                    l'application. Le cashback ne s'applique pas aux visites
+                    longue durée.
                 </p>
             </Section>
 
@@ -213,7 +225,7 @@ export default function RulesPage() {
                     Stay229 peut faire évoluer les taux, plafonds ou durées
                     du programme. Les commissions déjà acquises ne sont
                     jamais réduites : un changement de règles ne s'applique
-                    qu'aux résas postérieures à la mise à jour.
+                    qu'aux réservations postérieures à la mise à jour.
                 </p>
             </Section>
 

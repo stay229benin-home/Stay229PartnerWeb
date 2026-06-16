@@ -212,7 +212,7 @@
 
 <table>
     <thead>
-        <tr><th>Niveau</th><th>Filleuls actifs *</th><th>Taux</th><th>Plafond / résa</th><th>Durée payée **</th></tr>
+        <tr><th>Niveau</th><th>Filleuls actifs *</th><th>Taux</th><th>Plafond / réservation</th><th>Durée payée **</th></tr>
     </thead>
     <tbody>
         <tr><td><strong>1</strong></td><td>1 à 5</td><td>3 %</td><td>700 F</td><td>4 mois</td></tr>
@@ -229,7 +229,7 @@
 </p>
 
 <div class="info">
-    <strong>Comment ça se calcule concrètement :</strong> commission = <code>min(montant_résa × taux, plafond)</code>.<br>
+    <strong>Comment ça se calcule concrètement :</strong> commission = <code>min(montant_réservation × taux, plafond)</code>.<br>
     Exemple niveau 1 : un filleul réserve à 15 000 F → commission = min(15000 × 3 %, 700) = <strong>450 F</strong>.<br>
     Le même filleul réserve à 30 000 F → commission = min(30000 × 3 %, 700) = <strong>700 F</strong> (le plafond).
 </div>
@@ -252,7 +252,7 @@
 
 <h3>Pour les clients (filleuls)</h3>
 <div class="success">
-    Les clients qui s'inscrivent <strong>avec un code promo</strong> bénéficient automatiquement de <strong>10 % de réduction</strong> sur leur <strong>toute première</strong> réservation d'appartement. C'est l'argument que les partenaires peuvent utiliser pour convaincre leur audience. La remise ne s'applique pas sur les frais de visite (2000 F) — par design, pour que les partenaires aient de quoi vendre du concret.
+    Les clients qui s'inscrivent <strong>avec un code promo</strong> rejoignent automatiquement le programme de fidélisation Stay229. Ils économisent <strong>jusqu'à 10 %</strong> sur leurs réservations d'appartement sous forme de <strong>cashback</strong> crédité automatiquement sur leur <strong>portefeuille Stay229</strong> (interne à l'application). Ce solde est ensuite utilisable comme réduction sur leurs futures réservations. C'est l'argument que les partenaires peuvent utiliser pour convaincre leur audience. Le cashback ne s'applique pas sur les frais de visite (2000 F) — par design, pour que les partenaires aient de quoi vendre du concret.
 </div>
 
 <h3>Le bug "invalid key" expliqué</h3>
@@ -644,7 +644,7 @@ git push -u origin main</pre>
 
 <h2 id="partie-6">6. Étape 5 — Recompiler l'app Android</h2>
 
-<p>L'app Android a aussi été modifiée pour appliquer automatiquement la réduction de 10% aux clients parrainés. Il faut recompiler l'APK.</p>
+<p>L'app Android a aussi été modifiée pour intégrer le programme de fidélisation : les clients parrainés gagnent jusqu'à 10 % de cashback sur leurs réservations, crédité sur leur portefeuille Stay229. Il faut recompiler l'APK.</p>
 
 <div class="step">
     <strong>6.1</strong> — Ouvre <strong>Android Studio</strong>.
@@ -663,7 +663,7 @@ git push -u origin main</pre>
 </div>
 
 <div class="step">
-    <strong>6.5</strong> — Installe le nouvel APK sur ton téléphone et fais le tour : inscris un nouveau compte test avec un code promo valide → quand tu réserves <strong>un appartement (court séjour)</strong>, tu dois voir une ligne "Réduction parrainage -10%" dans le récapitulatif. Pour une simple <strong>visite</strong> (long séjour 2000 F), la remise n'apparaît pas, c'est normal.
+    <strong>6.5</strong> — Installe le nouvel APK sur ton téléphone et fais le tour : inscris un nouveau compte test avec un code promo valide → quand tu réserves <strong>un appartement (court séjour)</strong>, le cashback fidélité (jusqu'à 10 %) doit apparaître dans le récapitulatif et sera crédité sur le portefeuille du client à la confirmation. Pour une simple <strong>visite</strong> (long séjour 2000 F), aucun cashback n'est généré, c'est normal.
 </div>
 
 <div class="warning">
@@ -686,7 +686,7 @@ git push -u origin main</pre>
     <li>Code poussé sur GitHub</li>
     <li>Site déployé sur Vercel avec les 2 variables d'environnement renseignées</li>
     <li>App Android recompilée et installée (si tu en es là)</li>
-    <li>Test bout-en-bout : inscription client avec code promo + réservation d'appartement (court séjour) → -10% appliqué côté client, commission calculée selon le taux du niveau côté partenaire</li>
+    <li>Test bout-en-bout : inscription client avec code promo + réservation d'appartement (court séjour) → cashback fidélité (jusqu'à 10 %) crédité sur le portefeuille du client, commission calculée selon le taux du niveau côté partenaire</li>
 </ul>
 
 <!-- ============================================================== -->
@@ -725,7 +725,7 @@ drop view if exists public.partner_commissions;</pre>
 
 <h3>Le bandeau "Niveau" affiche "Niveau 1" alors que mon partenaire a 30 filleuls</h3>
 <div class="warning">
-    Le niveau est basé sur les <strong>filleuls actifs</strong> uniquement (au moins 1 résa confirmée d'appartement). Vérifie le champ <code>confirmed_filleul_count</code> dans la vue <code>partner_commission_totals</code>. Si la valeur est basse, c'est que la plupart des filleuls inscrits n'ont jamais réservé.
+    Le niveau est basé sur les <strong>filleuls actifs</strong> uniquement (au moins 1 réservation confirmée d'appartement). Vérifie le champ <code>confirmed_filleul_count</code> dans la vue <code>partner_commission_totals</code>. Si la valeur est basse, c'est que la plupart des filleuls inscrits n'ont jamais réservé.
 </div>
 
 <h3>Le bouton "Codes promo" n'apparaît pas dans le menu</h3>
